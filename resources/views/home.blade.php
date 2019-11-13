@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in USER
+                    @if ( Auth::user()->status )
+                        You are logged in USER    
+                    @else
+                        Verify email
+                    @endif
+                    
                 </div>
             </div>
         </div>

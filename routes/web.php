@@ -35,3 +35,6 @@ Route::prefix('employee')->group(function()
     Route::get('/', 'EmployeeController@index')->name('employee.dashboard');
     Route::get('/logout', 'Auth\EmployeeLoginController@logout')->name('employee.logout');
 });
+
+Route::get('/verifyEmail', 'Auth\RegisterController@verifyEmailfirst')->name('verifyEmailfirst');
+Route::get('/verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
