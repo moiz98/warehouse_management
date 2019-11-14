@@ -3,8 +3,8 @@
 @section('content')
     <h1>this is products page</h1>
     
-    {{-- @if (count($product) > 0)
-        @foreach ($product as $item)
+    @if (count($products) > 0)
+        @foreach ($products as $item)
             <!-- First product box start here-->
             <div class="prod-info-main prod-wrap clearfix">
                 <div class="row">
@@ -52,5 +52,5 @@
         @endforeach
     @else
         <p>No Products Available</p>
-    @endif --}}
+    @endif
 @endsection

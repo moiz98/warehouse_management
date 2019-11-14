@@ -40,3 +40,4 @@ Route::get('/verifyEmail', 'Auth\RegisterController@verifyEmailfirst')->name('ve
 Route::get('/verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
 Route::resource('addresses', 'AddressesController');
+Route::resource('Products', 'ProductsController');
