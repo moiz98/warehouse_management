@@ -20,6 +20,6 @@ class PagesController extends Controller
     }
     public function products()
     {
-        return view('pages.products');
+        return view('products.index');
     }
 }

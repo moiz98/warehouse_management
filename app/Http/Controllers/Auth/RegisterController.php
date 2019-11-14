@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Address;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -57,6 +58,11 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'lastname' => 'required|string|max:255',
             'phone' => 'required|string|max:12',
+            //'address_type' => 'required|string|max:255',
+            //'House/street' => 'required|string|max:255',
+            //'City' => 'required|string|max:255',
+            //'Province/state' => 'required|string|max:255',
+            //'Country' => 'required|string|max:255',
         ]);
     }
 
@@ -68,6 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        dd($data);
         Session::flash('status','Registered! Verify Your Email To Activate Your Account');
         $user = User::create([
             'name' => $data['name'],
@@ -77,7 +84,17 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'verifyToken' => Str::random(40),
         ]);
-
+        //Create Address info of User
+        /*
+            $address = new Address;
+            $address->address_type = $data->input('address_type');
+            $address->House/street = $data->input('House/street');
+            $address->City = $data->input('City');
+            $address->Province/state = $data->input('Province/state');
+            $address->Country = $data->input('Country');
+            $address->user_id = $user->id;
+            $address->save();
+        */
         $thisUser = User::findOrFail($user->id);
         $this->SendEmail($thisUser);
         return $user;

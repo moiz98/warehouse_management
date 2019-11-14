@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
+                    <h5 align="center">Personel Details</h5>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -52,7 +52,64 @@
                                 @endif
                             </div>
                         </div>
+                    <h5 align="center">Shipping Details</h5>
+                        <div class="form-group{{ $errors->has('house') ? ' has-error' : '' }}">
+                            <label for="house" class="col-md-4 control-label">House/Street</label>
 
+                            <div class="col-md-6">
+                                <input id="house" type="text" class="form-control" name="house" value="{{ old('house') }}" required autofocus>
+
+                                @if ($errors->has('house'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('house') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('City') ? ' has-error' : '' }}">
+                            <label for="City" class="col-md-4 control-label">City</label>
+    
+                            <div class="col-md-6">
+                                <input id="City" type="text" class="form-control" name="City" value="{{ old('City') }}" required autofocus>
+
+                                @if ($errors->has('City'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('City') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="form-group{{ $errors->has('Province') ? ' has-error' : '' }}">
+                            <label for="Province" class="col-md-4 control-label">Province</label>
+    
+                            <div class="col-md-6">
+                                <input id="Province" type="text" class="form-control" name="Province" value="{{ old('Province') }}" required autofocus>
+    
+                                @if ($errors->has('Province'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Province') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="form-group{{ $errors->has('Country') ? ' has-error' : '' }}">
+                            <label for="Country" class="col-md-4 control-label">Country</label>
+        
+                            <div class="col-md-6">
+                                <input id="Country" type="text" class="form-control" name="Country" value="{{ old('Country') }}" required autofocus>
+    
+                                @if ($errors->has('Country'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    
+                    <h5 align="center">Account Details</h5>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

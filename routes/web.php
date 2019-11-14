@@ -14,7 +14,7 @@
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
-Route::get('/products', 'PagesController@products');
+Route::get('/products', 'ProductsController@index');
 
 Auth::routes();
 
@@ -38,3 +38,5 @@ Route::prefix('employee')->group(function()
 
 Route::get('/verifyEmail', 'Auth\RegisterController@verifyEmailfirst')->name('verifyEmailfirst');
 Route::get('/verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+
+Route::resource('addresses', 'AddressesController');
