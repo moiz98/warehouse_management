@@ -12,4 +12,9 @@ class Suppliers extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function Suppliers()
+    {
+        return $this->hasMany('App\Products');
+    }
 }

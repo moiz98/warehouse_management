@@ -13,4 +13,8 @@ class Inventory extends Model
     //Timestamps
     public $timestamps = true;
 
+    public function Products()
+    {
+        return $this->hasMany('App\Products');
+    }
 }

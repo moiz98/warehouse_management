@@ -20,8 +20,7 @@ class CreateOrderDetailsTable extends Migration
             //$table->integer('product_id');
             //$table->foreign('product_id')->references('id')->on('products');
             $table->integer('Quantity');
-            //$table->integer('payment_id');
-            //$table->foreign('payment_id')->references('id')->on('payments');
+            $table->double('Price',15,2);
             $table->timestamps();
         });
     }

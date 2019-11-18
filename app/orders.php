@@ -12,4 +12,21 @@ class orders extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function cart()
+    {
+        return $this->belongsTo('App\cart');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function order_details()
+    {
+        return $this->hasMany('App\order_details');
+    }
+    public function payment()
+    {
+        return $this->hasOne('App\Payment');
+    }
 }

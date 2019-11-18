@@ -12,4 +12,13 @@ class shipment extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function orders()
+    {
+        return $this->hasOne('App\orders');
+    }
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

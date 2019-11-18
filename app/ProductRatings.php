@@ -12,4 +12,13 @@ class ProductRatings extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function Products()
+    {
+        return $this->hasMany('App\Products');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

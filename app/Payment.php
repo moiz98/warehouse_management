@@ -12,4 +12,9 @@ class Payment extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function orders()
+    {
+        return $this->belongsTo('App\orders');
+    }
 }

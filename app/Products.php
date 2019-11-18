@@ -12,4 +12,13 @@ class Products extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    public function supplier()
+    {
+        return $this->belongsTo('App\Suppliers');
+    }
 }

@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('job_title');
-            $table->decimal('salary');
+            $table->double('salary',15,2);
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

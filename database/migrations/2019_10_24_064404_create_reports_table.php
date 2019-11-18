@@ -15,6 +15,9 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('Total_Sales',15,0);
+            $table->double('Total_Income',15,2);
+            $table->double('Profit',15,2);
             $table->timestamps();
         });
     }
