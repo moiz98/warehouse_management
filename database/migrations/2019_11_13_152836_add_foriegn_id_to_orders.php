@@ -18,8 +18,6 @@ class AddForiegnIdToOrders extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('cart_id')->unsigned()->after('user_id');
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
-            $table->integer('payment_id')->unsigned()->after('cart_id');
-            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
         });
     }
 
@@ -35,8 +33,6 @@ class AddForiegnIdToOrders extends Migration
             $table->dropColumn('user_id');
             $table->dropForeign(['cart_id']);
             $table->dropColumn('cart_id');
-            $table->dropForeign(['payment_id']);
-            $table->dropColumn('payment_id');
         });
     }
 }

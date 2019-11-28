@@ -14,8 +14,8 @@ class AddCategoryToProducts extends Migration
     public function up()
     {
         Schema::table('products', function($table) {
-            $table->integer('category')->unsigned()->after('id');
-            $table->foreign('category')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('category_id')->unsigned()->after('id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddCategoryToProducts extends Migration
     public function down()
     {
         Schema::table('products', function($table) {
-            $table->dropForeign(['category']);
-            $table->dropColumn('category');
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
             
         });
     }

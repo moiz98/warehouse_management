@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Suppliers;
 
 class SuppliersController extends Controller
 {
@@ -11,9 +12,15 @@ class SuppliersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
-        //
+        $suppliers = Suppliers::all();
+        return view('Suppliers.index')->with('suppliers', $suppliers);
     }
 
     /**
@@ -23,7 +30,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        //
+        return view('Suppliers.create');
     }
 
     /**
@@ -34,7 +41,23 @@ class SuppliersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'fname' => 'required',
+            'lname' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'company' => 'required'
+        ]);
+        
+        $supplier = new Suppliers;
+        $supplier->Supplier_first_name = $request->input('fname');
+        $supplier->Supplier_last_name = $request->input('lname');
+        $supplier->Supplier_phone = $request->input('phone');
+        $supplier->Supplier_email = $request->input('email');
+        $supplier->Supplier_Company = $request->input('company');
+        $supplier->save();
+        
+        return redirect('/suppliers')->with('success', 'Supplier Added');
     }
 
     /**
@@ -45,7 +68,8 @@ class SuppliersController extends Controller
      */
     public function show($id)
     {
-        //
+        $supplier = Suppliers::find($id);
+        return view('Suppliers.show')->with('supplier',$supplier);
     }
 
     /**
@@ -56,7 +80,8 @@ class SuppliersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $supplier = Suppliers::find($id);
+        return view('Suppliers.edit')->with('supplier', $supplier);
     }
 
     /**
@@ -68,7 +93,21 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'fname' => 'required',
+            'lname' => 'required',
+            'phone' => 'required',
+            'company' => 'required'
+        ]);
+        
+        $supplier = Suppliers::find($id);
+        $supplier->Supplier_first_name = $request->input('fname');
+        $supplier->Supplier_last_name = $request->input('lname');
+        $supplier->Supplier_phone = $request->input('phone');
+        $supplier->Supplier_Company = $request->input('company');
+        $supplier->save();
+        
+        return redirect('/suppliers')->with('success', 'Supplier Added');
     }
 
     /**
@@ -79,6 +118,8 @@ class SuppliersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supplier = Suppliers::find($id);
+        $supplier->delete();
+        return redirect('/suppliers')->with('success', 'Supplier Removed');
     }
 }

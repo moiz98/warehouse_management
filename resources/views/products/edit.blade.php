@@ -1,30 +1,30 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
-    <h1>Add new Products</h1>
-    <form method="post" action="{{ route('Products.store') }}">
-        {{ csrf_field() }}
-        <div class="form-group">            
+    <h1>Edit Product</h1>
+    <form action="{{ route('Products.update',$product->id) }}" method="POST">
+        {{ csrf_field() }}            
+        <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Product Name here"/>
+            <input type="text" class="form-control" value="{{ $product->name }}" name="name" placeholder="Product Name here"/>
         </div>
         <div class="form-group">
             <label for="Description">Description</label>
-            <textarea class="form-control" name="Description" id='article-ckeditor' cols="30" rows="10" placeholder="Product Description"></textarea>
+            <textarea class="form-control" name="Description" id='article-ckeditor' cols="30" rows="10" placeholder="Detail">{{ $product->Description }}></textarea>
         </div>
         <div class="form-group">            
             <label for="weight">Unit Weight</label>
-            <input type="text" class="form-control" name="weight" placeholder="unit weight here"/>
+            <input type="text" class="form-control" value="{{ $product->unit_weight }}" name="weight" placeholder="unit weight here"/>
         </div>
         <div class="form-group">
             <label for="UnitType">Unit Type</label>
             <select class="form-control" name="UnitType">
                 <option value="" selected>select Unit</option>
-                <option value="mg">MilliGrams(mg)</option>
-                <option value="g">Grams(g)</option>
-                <option value="kg">Kilograms(kg)</option>
-                <option value="item">item</option>
-                <option value="litre">litre</option>
+                <option value="mg" @if ($product->unit_type == 'mg') selected="selected" @endif>MilliGrams(mg)</option>
+                <option value="g" @if ($product->unit_type == 'g') selected="selected" @endif>Grams(g)</option>
+                <option value="kg" @if ($product->unit_type == 'kg') selected="selected" @endif>Kilograms(kg)</option>
+                <option value="item" @if ($product->unit_type == 'item') selected="selected" @endif>item</option>
+                <option value="litre" @if ($product->unit_type == 'litre') selected="selected" @endif>litre</option>
             </select>
         </div>    
         <div class="form-group">
@@ -32,7 +32,7 @@
             <select class="form-control" name="Category">
                 <option value="" selected>select Category</option>
                 @foreach ($category as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    <option value="{{$cat->id}}" @if ($cat->id == $class->cat->id) selected="selected" @endif>{{$cat->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -47,24 +47,10 @@
             </div>
         <div class="form-group">            
             <label for="price">Unit Price</label>
-            <input type="text" class="form-control" name="price" placeholder="$$$$"/>
+            <input type="text" class="form-control" value="{{$product->unit_price}}" name="price" placeholder="$$$$"/>
         </div>
-        <button type="submit" class="btn btn-primary">Add Product</button>
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-primary">Update Product</button>
     </form>
-@endsection --}}
-
-<h1>Edit Product</h1>
-<form action="{{ route('Products.update',$product->id) }}" method="POST">
-        <div class="form-group">
-        @method('PUT')
-        @csrf          
-            <label for="title">Title</label>
-            <input type="text" class="form-control" value="{{ $post->title }}" name="title" placeholder="Title"/>
-        </div>
-        <div class="form-group">
-            <label for="body">Body</label>
-            <textarea id="article-ckeditor" class="form-control" name="body" cols="30" rows="10" placeholder="Detail">{{ $post->body }}</textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
- </form>
+@endsection

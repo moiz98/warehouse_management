@@ -13,12 +13,12 @@ class Products extends Model
     //Timestamps
     public $timestamps = true;
 
-    public function category()
-    {
+    public function category(){
         return $this->belongsTo('App\Category');
     }
     public function supplier()
     {
         return $this->belongsTo('App\Suppliers');
     }
+
 }

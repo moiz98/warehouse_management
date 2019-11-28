@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Add new Products</h1>
-    <form method="post" action="{{ route('Products.store') }}">
+    <form method="post" action="{{ route('Products.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">            
             <label for="name">Name</label>
@@ -32,7 +32,7 @@
             <select class="form-control" name="Category">
                 <option value="" selected>select Category</option>
                 @foreach ($category as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    <option value="{{$cat->id}}">{{$cat->Category_name}}</option>
                 @endforeach
             </select>
         </div>
@@ -41,13 +41,17 @@
                 <select class="form-control" name="Supplier">
                     <option value="" selected>select Supplier</option>
                     @foreach ($supplier as $sup)
-                <option value="{{$sup->id}}">{{$sup->first_name}} {{$sup->last_name}}</option>
+                        <option value="{{$sup->id}}">{{$sup->Supplier_first_name}} {{$sup->Supplier_last_name}}</option>
                     @endforeach
                 </select>
             </div>
         <div class="form-group">            
             <label for="price">Unit Price</label>
             <input type="text" class="form-control" name="price" placeholder="$$$$"/>
+        </div>
+        <div class="form-group">
+            <label for="coverimg">Product Image</label>
+            <input type="file" class="form-control" name="coverimg"/>
         </div>
         <button type="submit" class="btn btn-primary">Add Product</button>
     </form>

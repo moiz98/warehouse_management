@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.index');
+        $category = Category::all();
+        return view('pages.index')->with('category', $category);
     }
     public function about()
     {

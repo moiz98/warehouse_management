@@ -25,10 +25,10 @@ class EmployeeLoginController extends Controller
         ]);
         
         //Attempt to log the user in
-        if(Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        if(Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password, 'job_title' => 'manager'], $request->remember))
         {
             //if successful, then redirect to their intended location
-            return redirect()->intended(route('employee.dashboard'));
+            return redirect()->intended(route('manager.dashboard'));
         }
     
         //if unsuccessful, then redirect back to login with form data

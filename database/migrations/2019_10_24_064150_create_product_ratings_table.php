@@ -19,8 +19,8 @@ class CreateProductRatingsTable extends Migration
             //$table->foreign('product_id')->references('id')->on('products');
             //$table->integer('customer_id');
             //$table->foreign('customer_id')->references('id')->on('users');
-            $table->integer('Rating');
-            $table->string('Comments')->nullable();
+            $table->integer('Product_Rating');
+            $table->mediumText('Product_Comments')->nullable();
             $table->timestamps();
         });
     }

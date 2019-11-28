@@ -13,7 +13,7 @@ class Suppliers extends Model
     //Timestamps
     public $timestamps = true;
 
-    public function Suppliers()
+    public function products()
     {
         return $this->hasMany('App\Products');
     }

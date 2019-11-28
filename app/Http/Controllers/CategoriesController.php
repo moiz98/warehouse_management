@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -11,9 +12,14 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function index()
     {
-        //
+        $category = Category::all();
+        return view('Category.index')->with('category', $category);
     }
 
     /**
@@ -23,7 +29,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Category.create');
     }
 
     /**
@@ -34,7 +40,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        
+        $category = new Category;
+        $category->Category_name = $request->input('name');
+        $category->Category_Description = $request->input('Description');
+        $category->save();
+        
+        return redirect('/category')->with('success', 'Category Added');
     }
 
     /**
@@ -45,7 +60,8 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        return view('Category.show')->with('category', $category);
     }
 
     /**
@@ -56,7 +72,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id); 
+        return view('Category.edit')->with('category', $category);
     }
 
     /**
@@ -68,7 +85,16 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        
+        $category = Category::find($id);
+        $category->Category_name = $request->input('name');
+        $category->Category_Description = $request->input('Description');
+        $category->save();
+        
+        return redirect('/category')->with('success', 'Category Updated');
     }
 
     /**
@@ -79,6 +105,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('/category')->with('success', 'Category Removed');
     }
 }

@@ -12,6 +12,8 @@ class orders extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = true;
+    //Mass Assignments
+    protected $fillable = ['user_id', 'cart_id', 'status', 'Total_Amount'];
 
     public function cart()
     {

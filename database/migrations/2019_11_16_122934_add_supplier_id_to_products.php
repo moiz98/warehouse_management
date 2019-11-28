@@ -14,8 +14,8 @@ class AddSupplierIdToProducts extends Migration
     public function up()
     {
         Schema::table('products', function($table) {
-            $table->integer('supplier')->unsigned()->after('category');
-            $table->foreign('supplier')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->integer('supplier_id')->unsigned()->after('category_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddSupplierIdToProducts extends Migration
     public function down()
     {
         Schema::table('products', function($table) {
-            $table->dropForeign(['supplier']);
-            $table->dropColumn('supplier'); 
+            $table->dropForeign(['supplier_id']);
+            $table->dropColumn('supplier_id'); 
         });
     }
 }

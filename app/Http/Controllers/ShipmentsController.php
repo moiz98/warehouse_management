@@ -21,6 +21,10 @@ class ShipmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function placeOrder($cart_id)
+    {
+        return 'here manager place order working ';
+    }
     public function create()
     {
         //

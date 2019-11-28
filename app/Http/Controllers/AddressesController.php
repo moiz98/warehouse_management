@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Address;
 
 class AddressesController extends Controller
 {
@@ -11,6 +12,10 @@ class AddressesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+    }
     public function index()
     {
         //
@@ -56,7 +61,8 @@ class AddressesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $address = Address::find($id);
+        return view('address.edit')->with('address',$address);
     }
 
     /**
@@ -68,7 +74,21 @@ class AddressesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'house' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+        ]);
+        
+        $address = Address::find($id);
+        $address->House = $request->input('house');
+        $address->City = $request->input('city');
+        $address->Province = $request->input('state');
+        $address->Country = $request->input('country');
+        $address->save();
+        
+        return redirect('/home')->with('success', 'Address Updated');
     }
 
     /**

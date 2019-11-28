@@ -12,6 +12,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <style>
+        body{
+            background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)),url(https://www.conceptstorage.com/media/zoo/images/increase-warehouse-storage-capacity_4a32e3cb56b8fbced289eb2b9420edc3.jpg);
+            background-size: cover;
+            background-position: center;
+            /* margin-top:20px; */
+            /* background:#eee; */
+        }
+        .card-body{
+            size: 180em;
+        }
+    </style> --}}
 </head>
 <body>
     <div id="app">
@@ -29,5 +41,8 @@
     <script>
         CKEDITOR.replace( 'article-ckeditor' );
     </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
 </body>
 </html>
